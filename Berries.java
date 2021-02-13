@@ -15,7 +15,7 @@ public class Berries{
         }
         Arrays.sort(c);
         for (int i=0;i<N;i++){
-            
+            i=i;
         }
     }
 }
