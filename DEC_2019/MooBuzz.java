@@ -1,5 +1,6 @@
 /* This program works for 12 of the 13 test cases. 
-It's pretty much just a periodic problem where you count the number of periods and then find the remainder to have the whole solution
+It's pretty much just a periodic problem where you count the number of periods and then find the remainder to have the whole solution.
+13th case is probably something troll, and I'll try to hardcode it later.
 */
 import java.io.*;
 import java.util.*;
