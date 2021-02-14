@@ -1,5 +1,5 @@
 package DEC_2019;
-//very toxic simulation problem. Currently too sleep deprived and lazy to finish the simulate function right now
+//very toxic simulation problem. Currently too sleep deprived and lazy to finish the simulate function right now. Not Finished Yet
 import java.io.*;
 import java.util.*;
 public class Meetings {
