@@ -21,6 +21,11 @@ public class Meetings {
     public static void simulate(){
         boolean x=true;
         while(x){
+            for (int i=0;i<N;i++){
+                if ((l[i].v)>0)&&(l[i+1].v<0)){
+                    
+                }
+            }
             break;
         }
     }
