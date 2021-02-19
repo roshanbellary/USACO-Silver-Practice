@@ -1,17 +1,25 @@
-package DEC_2020;
 import java.io.*;
 import java.util.*;
 public class Cowntagion {
     public static int N;
     public static int result=0;
     public static ArrayList<Integer>[] e;
-    public static void bfs(int i, int prev){
-
+    public static void dfs(int i, int prev){
+        if (i!=prev){
+            if (e[i].size()>0){
+                int count=0;
+                while((int)Math.pow(2, count)<e[i].size()){count++;}
+                result+=(count+e[i].size());
+                for (int j=0;j<e[i].size();j++){
+                    dfs(e[i].get(j),i);
+                }
+            }
+        }
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(r.readLine());
-        e = new ArrayList[N-1];
+        e = new ArrayList[N];
         for (int i=0;i<N;i++){
             e[i]= new ArrayList<Integer>();
         }
@@ -22,11 +30,13 @@ public class Cowntagion {
             e[v1].add(v2);
             e[v2].add(v1);
         }
-        if (e[0].size()>1){
-            result+=(int)(Math.log(e[0].size())/Math.log(2))+e[0].size();
+        r.close();
+        if (e[0].size()>0){
+            int count=0;
+            while((int)Math.pow(2, count)<e[0].size()){count++;}
+            result+=(count+e[0].size());
         }
-        else{
-            result+=(int)(Math.log())
-        }
+        Cowntagion.dfs(0,0);
+        System.out.println(result);
     }
 }
