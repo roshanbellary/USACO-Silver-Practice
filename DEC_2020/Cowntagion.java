@@ -1,3 +1,4 @@
+package DEC_2020;
 import java.io.*;
 import java.util.*;
 public class Cowntagion {
@@ -6,14 +7,14 @@ public class Cowntagion {
     public static ArrayList<Integer>[] e;
     public static void dfs(int i, int prev){
         if (i!=prev){
-            if (e[i].size()>0){
+            if (e[i].size()>1){
                 int count=0;
                 while((int)Math.pow(2, count)<e[i].size()){count++;}
-                result+=(count+e[i].size());
-                for (int j=0;j<e[i].size();j++){
-                    dfs(e[i].get(j),i);
-                }
+                result+=(count+e[i].size()-1);
             }
+        }
+        for (int j=0;j<e[i].size();j++){
+            dfs(e[i].get(j),i);
         }
     }
     public static void main(String[] args) throws IOException{
