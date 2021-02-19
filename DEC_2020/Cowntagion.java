@@ -6,7 +6,7 @@ public class Cowntagion {
     public static int result=0;
     public static ArrayList<Integer>[] e;
     public static void bfs(int i, int prev){
-
+        
     }
     public static void main(String[] args){
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
@@ -22,6 +22,6 @@ public class Cowntagion {
             e[v1].add(v2);
             e[v2].add(v1);
         }
-        result+=(int)Math.log(e[0].size())/Math.log(2)+e[0].size();
+        result+=(int)(Math.log(e[0].size())/Math.log(2))+e[0].size();
     }
 }
