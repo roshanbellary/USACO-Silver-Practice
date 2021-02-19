@@ -1,3 +1,4 @@
+// Works for 12/15 of the test cases. Test cases 4, 7, 10 are all said to be wrong
 import java.io.*;
 import java.util.*;
 public class Cowntagion {
@@ -8,7 +9,7 @@ public class Cowntagion {
         if ((e[i].size()>1)&&(i!=0)){
             int count=0;
             while((int)Math.pow(2, count)<e[i].size()){count++;}
-            result+=(count+e[i].size()-1);
+            result+=(count);
         }
         for (int j=0;j<e[i].size();j++){
             if (e[i].get(j)!=prev){
@@ -34,9 +35,10 @@ public class Cowntagion {
         if (e[0].size()>0){
             int count=0;
             while((int)Math.pow(2, count)<e[0].size()){count++;}
-            result+=(count+e[0].size());
+            result+=(count);
         }
         Cowntagion.dfs(0,0);
+        result+=N-1;
         System.out.println(result);
     }
 }
