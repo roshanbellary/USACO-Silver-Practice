@@ -16,7 +16,7 @@ public class Measurement {
             c=_c;
         }
         public int compareTo(Change n){
-            return -Integer.compare(t, n.t);
+            return Integer.compare(t, n.t);
         }
     }
     public static boolean checkLists(ArrayList<Integer> a, ArrayList<Integer> b){
@@ -86,7 +86,10 @@ public class Measurement {
             }
         }
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));
-        pw.print(changes-1);
+        for (int i=0;i<N;i++){
+            System.out.println(me[i].t+" "+me[i].id+" "+me[i].c);
+        }
+        System.out.print(changes);
         pw.close();
     } 
 }
