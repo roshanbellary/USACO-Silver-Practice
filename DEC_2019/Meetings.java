@@ -3,77 +3,37 @@ package DEC_2019;
 import java.io.*;
 import java.util.*;
 public class Meetings {
-    public static int T;
     public static int N;
     public static int L;
-    public static Cow[] l;
-    public static ArrayList<Interaction> meet = new ArrayList<Interaction>();
-    static class Cow implements Comparable<Cow>{
-        int x,w,v;
-        public Cow(int x, int w, int v){
-            this.x=x;
-            this.w=w;
-            this.v=v;
+    public static ArrayList<Cow> l = new ArrayList<>();
+    public static class Cow implements Comparable<Cow>{
+        int x;
+        int v;
+        int w;
+        public Cow(int _x, int _w, int _v){
+            x=_x;
+            v=_v;
+            w=_w;
         }
-        public int compareTo(Cow y){
-            return Integer.compare(x,y.x);
+        public int compareTo(Cow n){
+            return Integer.compare(x,n.x);
         }
     }
-    static class Interaction implements Comparable<Interaction>{
-        double t;
-        int i,j;
-        public Interaction(double _t, int _i, int _j){
-            t=_t;
-            i=_i;
-            j=_j;
-        }
-        public int compareTo(Interaction y){
-            return Double.compare(t,y.t);
-        }
+    public static class Interaction implements Comparable<Interaction>{
+        
     }
     public static void simulate(){
-        int time=0;
-        boolean x=true;
-        for (int i=0;i<N-1;i++){
-            if ((l[i].v>0)&&(l[i+1].v<0)){
-                double diff = (double)(l[i+1].x-l[i].x)/2;
-                meet.add(new Interaction(diff, i, i+1));
-            } 
-        }
-        while(x){
-            int min=Integer.MAX_VALUE;
-            int temp=-1;
-            for (int j=0;j<meet.size();j++){
-                if (meet.get(j).t<min){
-                    min=meet.get(j).t;
-                    temp=j;
+        int sum=0;
+        PriorityQueue
+        while(sum<=total/2){
+            for (int i=0;i<N-1;i++){
+                if (l.get(i).x<0){
+                    sum+=l.get(i).w;
+                }
+                if ((l.get(i).v>0)&&(l.get(i+1).v<0)){
+                    
                 }
             }
-            int store = meet.get(temp).i;
-            time+=meet.get(temp).diff;
-            l[meet.get(temp).i]=-1;
-            l[meet.get(temp).j]=1;
-            if (meet.get(temp).j<N-1){
-                if (l[meet.get(temp).j+1].v<0){
-                    double diff = (double)(l[meet.get(temp).j+1].x-l[meet.get(temp).j].x)/2;
-                    meet.add(new Interaction(diff,meet.get(temp).j,meet.get(temp).j+1));
-                }
-            }
-            if (meet.get(temp).i>0){
-                if (l[meet.get(temp).i-1].v>0){
-                    double diff = (double)(l[meet.get(temp).i].x-l[meet.get(temp).i-1].x)/2;
-                    meet.add(new Interaction(diff,meet.get(temp).i-1,meet.get(temp).i));
-                }
-            }
-            meet.remove(temp);
-            for (int i=0;i<N;i++){
-                if ((i==store)||(i==store+1)){
-
-                }else{
-                    l[i]
-                }
-            }
-            x=false;
         }
     }
     public static void main(String[] args) throws IOException{
@@ -88,9 +48,9 @@ public class Meetings {
             total+=w;
             int x = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
-            l[i]=new Cow(x,w,v);
+            l.add(new Cow(x,w,v));
         }
-        Arrays.sort(l);
+        Collections.sort(l);
 
         
     }
