@@ -14,17 +14,6 @@ class Pasture{
             return Integer.compare(x,rect.x);
         }
     }
-    public class Points implements Comparable<Points>{
-        int x;
-        int y;
-        public Points(int _x, int _y){
-            x=_x;
-            y=_y;
-        }
-        public int compareTo(Points p){
-            return Integer.compare(y, p.y);
-        }
-    }
     public static void main(String[] args) throws IOException{
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(r.readLine());
@@ -34,16 +23,28 @@ class Pasture{
             points[i]=new Rectangle(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
         }
         Arrays.sort(points);
-        ArrayList<Points> set = new ArrayList<Points>();
+        long sum=0;
+        sum+=N+1;
         for (int i=0;i<N;i++){
-            set.clear();
             for (int j=i+1;j<N;j++){
-                set.add(new Points(points[j].x,points[j].y));
-            }
-            Collections.sort(set);
-            for (int z=0;z<N-i;z++){
-                
+                int count=0;
+                for (int z=j-1;z>i;z--){
+                    int d1 = points[j].y-points[i].y;
+                    int d2 = points[z].y-points[i].y;
+                    if ((d1>0)&&(d2>0)){
+                        if (d1>d2){
+                            count++;
+                        }
+                    }
+                    if ((d1<0)&&(d2<0)){
+                        if (d1<d2){
+                            count++;
+                        }
+                    }
+                }
+                sum+=(long)Math.pow(2,j-i-count-1);
             }
         }
+        System.out.println(sum);
     }
 }
