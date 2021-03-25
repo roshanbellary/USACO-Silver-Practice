@@ -20,11 +20,18 @@ public class Meetings {
         }
     }
     public static class Interaction implements Comparable<Interaction>{
-        
+        Cow a;
+        Cow b;
+        double t;
+        public Interaction(Cow _a, Cow _b, double time){
+            a=_a;
+            b=_b;
+            t=time;
+        }
     }
     public static void simulate(){
         int sum=0;
-        PriorityQueue
+        PriorityQueue<
         while(sum<=total/2){
             for (int i=0;i<N-1;i++){
                 if (l.get(i).x<0){
