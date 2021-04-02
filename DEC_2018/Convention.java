@@ -1,49 +1,58 @@
 import java.io.*;
 import java.util.*;
-class Convention{
+public class Convention {
     public static int N;
     public static int M;
     public static int C;
-    public static int[] t;
-    public static long result;
-    public static boolean check(long wait){
-        int need=1;
-        int first_t=t[0];
-        int first_i=0;
-        for (int i=1;i<N;i++){
-            if (((t[i]-first_t)>wait)||((i-first_i+1)>C)){
-                need++;
-                first_t=t[i];
-                first_i=i;
+    public static long answer;
+    public static int[] a;
+    public static boolean check(long t){
+        int start = a[0];
+        int count=1;
+        int bus=1;
+        int cap=0;
+        while (count<N+1){
+            if ((a[count-1]<=start+t)&&(cap<C)){
+                count++;
+                cap++;
+            }else{
+                cap=1;
+                bus++;
+                start = a[count-1];
+                count++;
             }
         }
-        return (need<=C);
+        return (bus<=M);
     }
-    public static void bin_search(long mi, long ma){
-        long min=mi;
-        long max=ma;
-        long answer=-1;
-        long pos=0;
-        for (long a=max;a>=1;a/=2){
-            while(Convention.check(pos+a)){
-                pos+=a;
-            }
+    public static void bin_search(){
+        long low=1;
+        long max=a[N-1];
+        while (low<max){
+            long mid = low +(max-low)/2;
+            if (Convention.check(mid)){
+                max = mid;
+            }else{
+                low=mid+1;
+            }   
         }
-        result=pos+1;
+        answer=low;
     }
-    public static void main(String[] args)throws IOException{
+    public static void main(String[] args) throws IOException{
         BufferedReader r = new BufferedReader(new FileReader("convention.in"));
         StringTokenizer st = new StringTokenizer(r.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
+        a = new int[N];
         st = new StringTokenizer(r.readLine());
-        t = new int[N];
         for (int i=0;i<N;i++){
-            t[i]=Integer.parseInt(st.nextToken());
+            a[i]=Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(t);
-        Convention.bin_search(0, (long)Math.pow(10,9));
-        System.out.println(result);
+        r.close();
+        Arrays.sort(a);
+        Convention.bin_search();
+        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("convention.out")));
+        pw.println(answer);
+        pw.close();
     }
 }
