@@ -4,7 +4,7 @@ public class Socdist {
     public static int N;
     public static int M;
     public static Interval[] val;
-    public static int distance;
+    public static long distance;
     public static class Interval implements Comparable<Interval>{
         int s;
         int l;
@@ -17,40 +17,33 @@ public class Socdist {
         }
     }
     public static void bin_search(){
-        int low=1;
-        int high=Integer.MAX_VALUE;
+        long low=1;
+        long high=(long)Math.pow(10,18);
         while (low<high){
-            int mid = low+(high-low)/2;
+            long mid = low+(high-low)/2;
             if (Socdist.check(mid)){
                 low = mid+1;
             }else{
-                high = mid;
+                high = mid-1;
             }
         }
-        distance = high;
+        distance=low;
     }
-    public static boolean check(int d){
+    public static boolean check(long d){
         int start = val[0].s;
-        boolean cont = true;
-        int count=0;
-        while (count<N){
-            boolean none = true;
-            for (int i=0;i<M;i++){
-                if ((val[i].s<=start+d)&&(val[i].l>=start+d)){
-                    start+=d;
-                    count++;
-                    none = false;
-                    break;
-                }
-                if (val[i].s>=start+d){
-                    start=val[i].s;
-                    count++;
-                    none = false;
-                    break;
-                }
+        int current=0;
+        int count=1;
+        while ((current<M)&&(count<N)){
+            if ((val[current].s<=start+d)&&(val[current].l>=start+d)){
+                start+=d;
+                count++;
             }
-            if (none){
-                break;
+            else if (val[current].s>=start+d){
+                start=val[current].s;
+                count++;
+            }
+            else{
+                current++;
             }
         }
         return (count==N);
@@ -72,7 +65,6 @@ public class Socdist {
         Socdist.bin_search();
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("socdist.out")));
         pw.println(distance);
-        System.out.println(distance);
         pw.close();
     }
 }
