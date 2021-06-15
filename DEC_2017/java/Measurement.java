@@ -86,9 +86,6 @@ public class Measurement {
             }
         }
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("measurement.out")));
-        for (int i=0;i<N;i++){
-            System.out.println(me[i].t+" "+me[i].id+" "+me[i].c);
-        }
         System.out.print(changes);
         pw.close();
     } 
